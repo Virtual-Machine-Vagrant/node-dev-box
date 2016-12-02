@@ -31,7 +31,7 @@ Don't forget to look at some helper shell scripts for newbies.
 
 * PostgreSQL 9.6
 
-* Git 2.7
+* Git 2.10
 
 * NodeJS v6.9 with Npm 3.10
 

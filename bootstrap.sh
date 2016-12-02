@@ -18,15 +18,29 @@ function install {
   sudo apt-get -y install "$@"
 }
 
+function add_repository {
+  sudo add-apt-repository "$1"
+}
+
 function update_packages {
   echo 'Updating package information...'
   sudo apt-get -y update
 }
 # End of Heper functions
 
-function install_dependencies {
-  # Install required dependencies here
+# Dependencies
+function install_git {
+  add_repository ppa:git-core/ppa
+  update_packages
+  install 'Git' git
 }
+
+function install_dependencies {
+  sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+  install_git
+}
+# Enf of Dependencies
 
 # PostgreSQL
 function install_postgresql {
@@ -40,7 +54,7 @@ function install_postgresql {
   install 'PostgreSQL' postgresql-"$postgresql_version" libpq-dev
 }
 
-function create_vagrant_superuser {
+function create_postgresql_superuser {
   sudo -u postgres createuser -s ubuntu
 }
 
@@ -55,7 +69,7 @@ function allow_external_connections {
 
 function install_postgresql_and_allow_external_connections {
   install_postgresql
-  create_vagrant_superuser
+  create_postgresql_superuser
   allow_external_connections
 }
 # End of PostgreSQL
@@ -81,7 +95,6 @@ function install_node_and_npm {
 # End of NodeJS
 
 
-update_packages
 install_dependencies
 install_postgresql_and_allow_external_connections
 install_node_and_npm
