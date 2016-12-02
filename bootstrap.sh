@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Bootstrap file for setting NodeJS development environment.
 
+node_version='6.x'
 postgresql_version='9.6'
 
 # Heper functions
@@ -76,7 +77,7 @@ function install_postgresql_and_allow_external_connections {
 
 # NodeJS
 function install_node {
-  curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+  curl -sL https://deb.nodesource.com/setup_"$node_version" | sudo -E bash -
   install 'NodeJS' nodejs
 }
 
