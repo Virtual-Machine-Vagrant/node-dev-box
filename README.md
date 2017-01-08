@@ -31,9 +31,9 @@ Don't forget to look at some helper shell scripts for newbies.
 
 * PostgreSQL 9.6
 
-* Git
+* NodeJS 6.9 LTS with Npm 3.10 and the latest stable Yarn
 
-* NodeJS v6.9 with Npm 3.10
+* The latest stable Git
 
 ## License
 

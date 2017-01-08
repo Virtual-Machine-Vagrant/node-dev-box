@@ -19,20 +19,20 @@ function install {
   sudo apt-get -y install "$@"
 }
 
-function add_repository {
-  sudo add-apt-repository "$1"
-}
-
 function update_packages {
   echo 'Updating package information...'
   sudo apt-get -y update
+}
+
+function add_repository {
+  sudo add-apt-repository "$1"
+  update_packages
 }
 # End of Heper functions
 
 # Dependencies
 function install_git {
   add_repository ppa:git-core/ppa
-  update_packages
   install 'Git' git
 }
 
@@ -78,6 +78,7 @@ function install_postgresql_and_allow_external_connections {
 # NodeJS
 function install_node {
   curl -sL https://deb.nodesource.com/setup_"$node_version" | sudo -E bash -
+  update_packages
   install 'NodeJS' nodejs
 }
 
@@ -89,15 +90,23 @@ function set_npm_permissions {
   source ~/.profile
 }
 
-function install_node_and_npm {
+function install_yarn {
+  echo 'Installing Yarn...'
+  npm install --global yarn
+}
+
+function install_node_and_yarn {
   install_node
   set_npm_permissions
+  install_yarn
 }
 # End of NodeJS
 
 
+update_packages
 install_dependencies
 install_postgresql_and_allow_external_connections
-install_node_and_npm
+install_node_and_yarn
+
 
 echo 'All set, rock on!'
