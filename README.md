@@ -35,6 +35,10 @@ Don't forget to look at some helper shell scripts for newbies.
 
 * The latest stable Git
 
+## Note About Symlinks
+
+To allow guest system to create symlinks, `vagrant up` command should be run as administrator.
+
 ## License
 
 Released under the MIT License, Copyright (c) 2016 Sergey Kanukov, inspired by official [Rails dev box](https://github.com/rails/rails-dev-box).
