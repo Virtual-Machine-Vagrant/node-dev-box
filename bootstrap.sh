@@ -28,6 +28,10 @@ function add_repository {
   sudo add-apt-repository "$1"
   update_packages
 }
+
+function restart_service {
+  sudo service "$1" restart
+}
 # End of Heper functions
 
 # Dependencies
@@ -72,6 +76,7 @@ function install_postgresql_and_allow_external_connections {
   install_postgresql
   create_postgresql_superuser
   allow_external_connections
+  restart_service postgresql
 }
 # End of PostgreSQL
 
