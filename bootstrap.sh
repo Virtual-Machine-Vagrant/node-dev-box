@@ -32,6 +32,10 @@ function add_repository {
 function restart_service {
   sudo service "$1" restart
 }
+
+function set_system_timezone {
+  sudo timedatectl set-timezone "$1"
+}
 # End of Heper functions
 
 # Dependencies
@@ -42,6 +46,7 @@ function install_git {
 
 function install_dependencies {
   sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+  set_system_timezone Europe/Moscow
 
   install_git
 }
